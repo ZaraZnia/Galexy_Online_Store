@@ -9,7 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GalexyOnlineStore.Common\GalexyOnlineStore.Common.csproj" />
     <ProjectReference Include="..\GalexyOnlineStore.Domain\GalexyOnlineStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Users\Commands\" />
   </ItemGroup>
 
 </Project>

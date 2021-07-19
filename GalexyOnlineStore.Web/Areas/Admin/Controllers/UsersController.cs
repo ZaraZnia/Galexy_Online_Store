@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GalexyOnlineStore.Application.Services.Users.Queries.GetUsers;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,24 @@ namespace GalexyOnlineStore.Web.Areas.Admin.Controllers
 {
     public class UsersController : Controller
     {
-        [Area("Admin")]
-        public IActionResult Index()
+        private readonly IGetUsersService _GetUsersService;
+
+        public UsersController(IGetUsersService getUsersService)
         {
-            return View();
+            _GetUsersService = getUsersService;
+        }
+
+        [Area("Admin")]
+        public IActionResult Index(string searchKey, int page)
+        {
+            var usersResultDto = _GetUsersService.Execute(
+                new GetUsertsRequestDto
+                {
+                    Page = page,
+                    SearchKey = searchKey
+                });
+
+            return View(usersResultDto);
         }
     }
 }

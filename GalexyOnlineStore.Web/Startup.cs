@@ -1,4 +1,5 @@
 using GalexyOnlineStore.Application.Interface.Contexts;
+using GalexyOnlineStore.Application.Services.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace GalexyOnlineStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IDatabaseContext, DatabaseContext>();
+            services.AddScoped<IGetUsersService, GetUsersService>();
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DatabaseContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

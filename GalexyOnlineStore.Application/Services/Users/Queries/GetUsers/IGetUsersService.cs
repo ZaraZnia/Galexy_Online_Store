@@ -6,7 +6,7 @@ namespace GalexyOnlineStore.Application.Services.Users.Queries.GetUsers
 {
     public interface IGetUsersService
     {
-        List<GetUsersDto> Execute(GetUsertsRequestDto request);
+        GetUsersResultDto Execute(GetUsertsRequestDto request);
         
     }
 }

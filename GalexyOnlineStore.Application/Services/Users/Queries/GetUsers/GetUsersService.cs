@@ -15,7 +15,7 @@ namespace GalexyOnlineStore.Application.Services.Users.Queries.GetUsers
             context = databaseContext;
         }
 
-        public List<GetUsersDto> Execute(GetUsertsRequestDto request)
+        public GetUsersResultDto Execute(GetUsertsRequestDto request)
         {
             var users = context.Users.AsQueryable();
 
@@ -25,14 +25,16 @@ namespace GalexyOnlineStore.Application.Services.Users.Queries.GetUsers
             }
 
             int rowCnt = 0;
-            var result = users.ToPaged(request.Page, 10, out rowCnt).Select(u => new GetUsersDto
+            var getUsers = users.ToPaged(request.Page, 10, out rowCnt).Select(u => new GetUsersDto
             {
                 Id = u.Id,
                 Name = u.Name,
                 Email = u.Email
             });
 
-            return result.ToList();
+            GetUsersResultDto usersResultDto = new GetUsersResultDto { Users = getUsers, UsersRowCount = getUsers.Count() };
+            
+            return usersResultDto;
         }
     }
 }

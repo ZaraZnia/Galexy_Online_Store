@@ -1,4 +1,5 @@
 using GalexyOnlineStore.Application.Interface.Contexts;
+using GalexyOnlineStore.Application.Services.Users.Queries.GetRoles;
 using GalexyOnlineStore.Application.Services.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,7 @@ namespace GalexyOnlineStore.Web
         {
             services.AddScoped<IDatabaseContext, DatabaseContext>();
             services.AddScoped<IGetUsersService, GetUsersService>();
+            services.AddScoped<IGetRolesService, GetRolesService>();
 
             services.AddEntityFrameworkSqlServer().AddDbContext<DatabaseContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -61,6 +63,11 @@ namespace GalexyOnlineStore.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                //endpoints.MapAreaControllerRoute(
+                //    name: "AdminPanel",
+                //    areaName: "Admin",
+                //    pattern: "Admin/{controller=Users}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "areas",

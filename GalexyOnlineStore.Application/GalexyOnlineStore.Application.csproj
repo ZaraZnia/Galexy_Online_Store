@@ -13,8 +13,4 @@
     <ProjectReference Include="..\GalexyOnlineStore.Domain\GalexyOnlineStore.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Users\Commands\" />
-  </ItemGroup>
-
 </Project>
